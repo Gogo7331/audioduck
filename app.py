@@ -123,7 +123,7 @@ def create_gui():
     # ... (der Rest des Codes bleibt unverändert) ...
 
     def start_monitoring():
-        monitor_thread = threading.Thread(target=monitor_volume_with_gui, args=(
+        monitor_thread = threading.Thread(target=monitor_volume, args=(
             monitor_app.get(),
             reduce_app.get(),
             threshold.get(),
@@ -134,7 +134,7 @@ def create_gui():
         monitor_thread.start()
 
         # Starte den Thread für die Live-Pegel-Aktualisierung
-        level_thread = threading.Thread(target=update_levels)
+        level_thread = threading.Thread(target=set_application_volume())
         level_thread.daemon = True
         level_thread.start()
 
